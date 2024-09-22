@@ -37,7 +37,7 @@ public class ArticleController {
         Article saved = articleRepository.save(article);
         //System.out.println(saved.toString());
         log.info(saved.toString());
-        return "";
+        return "redirect:/articles/" + saved.getId();
     }
 
     @GetMapping("/articles/{id}") // 단일 데이터 조회
