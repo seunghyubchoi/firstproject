@@ -45,7 +45,7 @@ public class ArticleController {
     public String show(@PathVariable Long id, Model model) { // 매개변수로 url에 있는 id 받아오기
         // 1. id를 조회해 데이터 가져오기
         Article articleEntity = articleRepository.findById(id).orElse(null);
-
+        log.info(articleEntity.toString());
         // 2. 모델에 데이터 등록하기 -> 뷰 페이지에서 사용하기 위함
         model.addAttribute("article", articleEntity);
 
@@ -69,6 +69,7 @@ public class ArticleController {
     @GetMapping("/articles/{id}/edit")
     public String edit(@PathVariable Long id, Model model) {
         Article articleEntity = articleRepository.findById(id).orElse(null);
+        log.info(articleEntity.toString());
         model.addAttribute("article", articleEntity);
         return "articles/edit";
     }
@@ -93,6 +94,7 @@ public class ArticleController {
         log.info("삭제 요청이 들어왔습니다!!");
         // 1. 삭제할 대상 가져오기
         Article target = articleRepository.findById(id).orElse(null);
+        log.info (target.toString());
         // 2. 대상 엔티티 삭제하기
         if (target != null) {
             articleRepository.delete(target);
