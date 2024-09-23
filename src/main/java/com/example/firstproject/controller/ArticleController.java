@@ -64,4 +64,11 @@ public class ArticleController {
         // 3. 사용자에게 보여 줄 뷰 페이지 설정하기
         return "articles/index";
     }
+
+    @GetMapping("/articles/{id}/edit")
+    public String edit(@PathVariable Long id, Model model) {
+        Article articleEntity = articleRepository.findById(id).orElse(null);
+        model.addAttribute("article", articleEntity);
+        return "articles/edit";
+    }
 }
